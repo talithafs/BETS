@@ -15,7 +15,7 @@ require (BETS)
 ## Instalação via Github
 #install.packages("devtools")
 require(devtools)
-install_github("pedrocostaferreira/BETS",force = TRUE)
+install_github("talithafs/BETS",force = TRUE)
 require(BETS)
 ```
 
@@ -44,8 +44,8 @@ getwd()
 **BETS.chart**
 
 ```{r}
-BETS.chart(alias = 'ipca_with_core', file = "images/ipca", out = "pdf")
-BETS.chart(alias = 'ulc', start = c(2008,1), file = "images/ulc", out = "pdf")
+#BETS.chart(alias = 'ipca_with_core', file = "ipca", out = "pdf")
+#BETS.chart(alias = 'ulc', start = c(2008,1), file = "ulc", out = "pdf")
 
 ```
 
@@ -57,7 +57,7 @@ parameters$author = "FGV/IBRE"
 parameters$url = "http://portalibre.fgv.br/"
 parameters$logo = "logo_ibre.png"
 parameters$text = "text.txt"
-BETS.dashboard(type = "inflation", parameters = parameters)
+#BETS.dashboard(type = "inflation", parameters = parameters)
 
 ```
 

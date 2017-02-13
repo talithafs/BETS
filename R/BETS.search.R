@@ -109,40 +109,20 @@
 #' @keywords search
 #' 
 #' @importFrom utils View
-#' @importFrom rappdirs site_config_dir
+#' @import RMySQL
 #' @importFrom stringr str_split
-#' @import sqldf
 #' @export 
 
 BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lang="en"){
   
-  meta.dir = site_config_dir(appname = "Metadata", appauthor = "BETS")
   
-  if(!file.exists(meta.dir)){
-    dir.create(meta.dir, recursive = T)
-  } 
-  
-  if(lang=="pt"){
-    
-    database="base_final_ptv1"
-    meta.file = paste0(meta.dir,"/", database, ".Rda")
+  conn = dbConnect(MySQL(),db="FGV_IBRE_NMEC_BETS",user="TALITHA.SPERANZA",password="vdJ7u4Py67K",host="dch009.fgv.br",port=5775)
+
+  if(lang == "en"){
+    tb = "metadata_en"
+  } else {
+    tb = "metadata_pt"
   }
-  else{
-    
-    database="bacen_v7"
-    meta.file = paste0(meta.dir,"/", database, ".Rda")
-  }
-  
-  if(!file.exists(meta.file)){
-    githubURL<- paste0("https://github.com/GreedBlink/databases/raw/master/",database,".Rdata")
-    
-    load(conn <- url(githubURL))
-    metadata <- get(database)
-    save(metadata, file = meta.file)
-    close(conn)
-  }
-  
-  load(meta.file)
   
   if(missing(description) && missing(src) && missing(periodicity) && missing(unit) && missing(code)){
     return(msg("No search parameters. Please set the values of one or more parameters."))    
@@ -168,7 +148,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
         exprs[i] = gsub("~", "", exprs[i])
         exprs[i] = gsub("'", "", exprs[i])
         exprs[i] = trimws(exprs[i])
-        and_params = c(and_params, paste0("Description not like " ,"\'%", exprs[i] ,"%\'"))
+        and_params = c(and_params, paste0("description not like " ,"\'%", exprs[i] ,"%\'"))
       }
     }
     
@@ -180,7 +160,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
         description = gsub(exprs[i], "", description)
         exprs[i] = gsub("'", "", exprs[i])
         exprs[i] = trimws(exprs[i])
-        or_params = c(or_params, paste0("Description like " ,"\'%", exprs[i] ,"%\'"))
+        or_params = c(or_params, paste0("description like " ,"\'%", exprs[i] ,"%\'"))
       }
     }
     
@@ -192,7 +172,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
         description = gsub(words[i], "", description)
         words[i] = gsub("~", "", words[i])
         words[i] = trimws(words[i])
-        and_params = c(and_params, paste0("Description not like " ,"\'%", words[i] ,"%\'"))
+        and_params = c(and_params, paste0("description not like " ,"\'%", words[i] ,"%\'"))
       }
     }
     
@@ -202,7 +182,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
     
     if(length(words) != 0){
       for(i in 1:length(words)){
-        or_params = c(or_params, paste0("Description like " ,"\'%", words[i] ,"%\'"))
+        or_params = c(or_params, paste0("description like " ,"\'%", words[i] ,"%\'"))
       }
     }
     
@@ -243,14 +223,14 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   }  
   
   if(!missing(code)){
-    params = c(params, paste0("Codes like " ,"\'", code ,"\'"))
+    params = c(params, paste0("code like " ,"\'", code ,"\'"))
   }
   
   if(!missing(start)){
     params = c(params, paste0("start like " ,"\'", start ,"\'"))
   }  
   
-  query = paste("select Codes, Description, Periodicity, start, source, unit from metadata where")
+  query = paste0("select * from ", tb, " where")
   query = paste(query, params[1])
   
   if(length(params) != 1) {
@@ -259,13 +239,12 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
     }
   }
   
-  results = sqldf(query)
-  
-  codes = suppressWarnings(as.numeric(metadata[,1]))
-  codes <- codes[!is.na(codes)]
+  results = dbGetQuery(conn, query)
+
+  count = dbGetQuery(conn,paste0("select count(*) from ", tb))
   
   if(nrow(results) > 0){
-    msg(paste("Found", nrow(results),"out of", length(codes) ,"time series.",sep=" "))
+    msg(paste("Found", nrow(results),"out of", count ,"time series.",sep=" "))
     
     if(view==T){
       return(View(results,"Metadata"))
@@ -277,4 +256,6 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   else{
     msg("No series found. Try using another combination of search terms.")
   }
+  
+  invisible(dbDisconnect(conn))
 }

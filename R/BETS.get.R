@@ -37,6 +37,12 @@
 
 BETS.get = function(code, from = "", to = "", data.frame = FALSE, frequency = NULL){
   
+     date_to   = strsplit(to,split="-")
+     to = paste0(date_to[[1]][2],"/",date_to[[1]][3],"/",date_to[[1]][1]) 
+  
+     date_from = strsplit(from,split="-")
+     from = paste0(date_from[[1]][2],"/",date_from[[1]][3],"/",date_from[[1]][1])
+  
     if(!grepl("ST_",code)){
       
       code = as.numeric(code)

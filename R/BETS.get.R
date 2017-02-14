@@ -31,6 +31,7 @@
 #' 
 #' @keywords get
 #' @import RMySQL
+#' @import DBI
 #' @export 
 
 

@@ -108,8 +108,8 @@
 #' 
 #' @keywords search
 #' 
-#' @importFrom utils View
 #' @import RMySQL
+#' @import DBI
 #' @importFrom stringr str_split
 #' @export 
 

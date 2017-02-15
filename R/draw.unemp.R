@@ -8,15 +8,15 @@
 #' 
 #' @return An image file is saved in the 'graphs' folder, under the BETS installation directory. 
 #' 
-#' @importFrom mFilter hpfilter
-#' 
-#' @importFrom grDevices dev.new dev.off  pdf  png
+#' @importFrom grDevices dev.new dev.off pdf png
 #' @importFrom zoo as.Date
 #' @importFrom utils read.csv2
 #' @importFrom stats ts plot.ts
 #' @importFrom graphics axis text  points  mtext arrows
 
 draw.unemp = function(file, start = NULL, ylim = NULL, open = TRUE){
+  
+  o = capture.output(requireNamespace('mFilter'))
   
   dev.new()
   op <- par(no.readonly = TRUE)
@@ -31,7 +31,7 @@ draw.unemp = function(file, start = NULL, ylim = NULL, open = TRUE){
   }
   
   unemp = BETS.get(10777)
-  trend = fitted(hpfilter(unemp))
+  trend = fitted(mFilter::hpfilter(unemp))
   
   if(!is.null(start)){
     unemp = window(unemp, start = start)

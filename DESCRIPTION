@@ -22,11 +22,12 @@ Imports:
     foreign,
     seasonal,
     stringr,
-    mFilter,
     dygraphs,
     RCurl,
     RMySQL,
     DBI
+Suggests: 
+    mFilter
 Description: It provides access to and information about the most important Brazilian economic time series - from the Getulio Vargas Foundation (FGV), the Central Bank of Brazil (BACEN) and the Brazilian Institute of Geography and Statistics (IBGE). It also presents tools for managing, analysing (e.g. generating dynamic reports with a complete analysis of a series) and exporting these time series.
 License: GPL-3
 BugReports: https://github.com/pedrocostaferreira/BETS/issues

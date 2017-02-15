@@ -125,6 +125,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   }
   
   if(missing(description) && missing(src) && missing(periodicity) && missing(unit) && missing(code)){
+    invisible(dbDisconnect(conn))
     return(msg("No search parameters. Please set the values of one or more parameters."))    
   }
   
@@ -242,9 +243,11 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   results = dbGetQuery(conn, query)
 
   count = dbGetQuery(conn,paste0("select count(*) from ", tb))
+  invisible(dbDisconnect(conn))
   
   if(nrow(results) > 0){
     msg(paste("Found", nrow(results),"out of", count ,"time series.",sep=" "))
+    
     
     if(view==T){
       return(View(results,"Metadata"))
@@ -256,6 +259,4 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   else{
     msg("No series found. Try using another combination of search terms.")
   }
-  
-  invisible(dbDisconnect(conn))
 }

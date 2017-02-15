@@ -38,17 +38,17 @@
 BETS.get = function(code, from = "", to = "", data.frame = FALSE, frequency = NULL){
   
      date_to   = strsplit(to,split="-")
-     to = paste0(date_to[[1]][2],"/",date_to[[1]][3],"/",date_to[[1]][1]) 
+     to = paste0(date_to[[1]][3],"/",date_to[[1]][2],"/",date_to[[1]][1]) 
   
      date_from = strsplit(from,split="-")
-     from = paste0(date_from[[1]][2],"/",date_from[[1]][3],"/",date_from[[1]][1])
+     from = paste0(date_from[[1]][3],"/",date_from[[1]][2],"/",date_from[[1]][1])
   
     if(!grepl("ST_",code)){
       
       code = as.numeric(code)
       aux = get.series.bacen(code, from = from, to = to)[[1]]
       
-      freq = suppressMessages(BETS.search(code = code, view = F)[1,3])
+      freq = suppressMessages(BETS.search(code = code, view = F)[1,4])
       freq = trimws(freq)
       
       if(is.na(freq)){
@@ -58,13 +58,13 @@ BETS.get = function(code, from = "", to = "", data.frame = FALSE, frequency = NU
       if(freq == "A"){
         freq = 1
       }
-      else if(freq == "Q"){
+      else if(freq == "Q" || freq == "T"){
         freq = 4
       }
       else if(freq == "M"){
         freq = 12
       }
-      else if(freq == "W"){
+      else if(freq == "W" || freq == "S"){
         freq = 52
       }
       else if(freq == "D"){
@@ -114,7 +114,7 @@ BETS.get = function(code, from = "", to = "", data.frame = FALSE, frequency = NU
     
 
    suppressWarnings(if(try==TRUE){
-     
+
      return(invisible(msg(paste(.MSG_NOT_AVAILABLE,"Date formatting is inadequate."))))
    })
     
@@ -135,6 +135,7 @@ BETS.get = function(code, from = "", to = "", data.frame = FALSE, frequency = NU
     aux2 = na.omit(aux2)
     
     if(is.null(aux1)){
+      
       return(invisible(msg(paste(.MSG_NOT_AVAILABLE,"Series contains only NAs."))))
     }
     

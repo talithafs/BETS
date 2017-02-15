@@ -12,11 +12,11 @@
 #' @importFrom grDevices dev.new dev.off  pdf  png
 #' @importFrom utils read.csv2
 #' @importFrom stats ts plot.ts
-#' @importFrom graphics axis text  points  mtext arrows
-#' 
-#' @importFrom mFilter hpfilter
+#' @importFrom graphics axis text points mtext arrows
 
 draw.vargdp = function(file, start = NULL, ylim = NULL, open = TRUE){
+  
+  o = capture.output(requireNamespace('mFilter'))
   
   dev.new()
   op <- par(no.readonly = TRUE)
@@ -31,7 +31,7 @@ draw.vargdp = function(file, start = NULL, ylim = NULL, open = TRUE){
   }
   
   vargdp = BETS.get(7326)
-  trend = fitted(hpfilter(vargdp))
+  trend = fitted(mFilter::hpfilter(vargdp))
   
   if(!is.null(start)){
     vargdp = window(vargdp, start = start)

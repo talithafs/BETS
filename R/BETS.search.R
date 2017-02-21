@@ -129,7 +129,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   
    if(!missing(description) & !missing(src) & !missing(periodicity) & !missing(unit) & !missing(code) & !missing(start)){
       querry <- paste0("select * from tb")
-    }
+    }else{
   
   
   if(missing(description) && missing(src) && missing(periodicity) && missing(unit) && missing(code)){
@@ -256,7 +256,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   if(nrow(results) > 0){
     msg(paste("Found", nrow(results),"out of", count ,"time series.",sep=" "))
     
-    
+ } # fim do else sobre a tabela inteira
     if(view==T){
       return(View(results,"Metadata"))
     }

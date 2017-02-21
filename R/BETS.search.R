@@ -127,8 +127,15 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
     tb = "metadata_pt"
   }
   
-   if(!missing(description) & !missing(src) & !missing(periodicity) & !missing(unit) & !missing(code) & !missing(start)){
+   if(description == "*"){
       querry <- paste0("select * from tb")
+      results = dbGetQuery(conn, query)
+     if(view==T){
+      return(View(results,"Metadata"))
+      }
+      else{
+        return(results)
+      }
     }else{
   
   
@@ -256,7 +263,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   if(nrow(results) > 0){
     msg(paste("Found", nrow(results),"out of", count ,"time series.",sep=" "))
     
- } # fim do else sobre a tabela inteira
+ 
     if(view==T){
       return(View(results,"Metadata"))
     }
@@ -267,4 +274,6 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   else{
     msg("No series found. Try using another combination of search terms.")
   }
+ } # fim do else sobre a tabela inteira
 }
+  

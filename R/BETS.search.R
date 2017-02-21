@@ -116,12 +116,20 @@
 BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lang="en"){
   
   
+  
   conn = dbConnect(MySQL(),db="FGV_IBRE_NMEC_BETS",user="TALITHA.SPERANZA",password="vdJ7u4Py67K",host="dch009.fgv.br",port=5775)
 
+ 
+  
   if(lang == "en"){
     tb = "metadata_en"
   } else {
     tb = "metadata_pt"
+  }
+  
+   if(!missing(description) & !missing(src) & !missing(periodicity) & !missing(unit) & !missing(code) & !missing(start)){
+      querry <- paste0("select * from tb)
+    }
   }
   
   if(missing(description) && missing(src) && missing(periodicity) && missing(unit) && missing(code)){

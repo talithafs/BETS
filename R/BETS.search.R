@@ -128,7 +128,7 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   }
   
    if(description == "*"){
-      query <- paste0("select * from tb")
+      query <- paste0("select * from ", tb)
       results = dbGetQuery(conn, query)
      if(view==T){
       return(View(results,"Metadata"))

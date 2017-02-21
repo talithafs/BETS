@@ -128,9 +128,9 @@ BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lan
   }
   
    if(!missing(description) & !missing(src) & !missing(periodicity) & !missing(unit) & !missing(code) & !missing(start)){
-      querry <- paste0("select * from tb)
+      querry <- paste0("select * from tb")
     }
-  }
+  
   
   if(missing(description) && missing(src) && missing(periodicity) && missing(unit) && missing(code)){
     invisible(dbDisconnect(conn))

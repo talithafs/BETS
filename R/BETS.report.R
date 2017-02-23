@@ -3,7 +3,7 @@
 #' @description Generate automatic reports with a complete analysis of a set of time series. For now, only a SARIMA analysis (Box & Jenkins approach) is possible. In a near future, a GRNN (General Regression Neural Network) analysis will be released. Soon after, Holt-Winters, GRNN, Multilayer Perceptron, Fuzzy Logic and Box-Cox analysis will become available.
 #' 
 #' @param mode A \code{character}.The type of the analysis. So far, only 'SARIMA' is available.
-#' @param ts A \code{integer}, a \code{ts} object or a \code{list} of \code{integer}s and \code{ts} objects. Either the ID of the series in the BETS database or a time series object (any series, not just BETS's). If a \code{list} is provided, a report is generated for each series in this list, which can be mixed with IDs and time series objects.
+#' @param ts An \code{integer}, a \code{ts} object or a \code{list} of \code{integer}s and \code{ts} objects. Either the ID of the series in the BETS database or a time series object (any series, not just BETS's). If a \code{list} is provided, a report is generated for each series in this list, which can be mixed with IDs and time series objects.
 #' @param parameters A \code{list}. The parameters of the report. See the 'details' section for more information.
 #' @param report.file A \code{character}. A path and a name for the report file (an .html file). If there is more than one series, this name will be used as a prefix. If this parameter is not provided, the report will be saved inside the 'reports' folder, under the BETS installation directory. 
 #' @param series.saveas A \code{character}. The format of the file on which the series and the predictions should be written. Possible values are 'none' (default), 'sas', 'dta', 'spss', 'csv', 'csv2' . Is is saved under the same directory as the report file.
@@ -14,7 +14,7 @@
 #' 
 #' \itemize{
 #' \item{\code{lag.max}: An \code{integer} Maximum number of lags to show on the ACFs e PACFs}
-#' \item{\code{n.ahead}: An \code{integer} Prevision horizon (number of steps ahead)}
+#' \item{\code{n.ahead}: An \code{integer} Forecast horizon (number of steps ahead)}
 #' }
 #' 
 #' @return One or more .html files (the reports) and, optionally, data files (series plus predictions).

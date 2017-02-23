@@ -1,6 +1,6 @@
 #' @title Test the significance of the parameters of an ARIMA model
 #' 
-#' @description  Performs the t test on every parameter of an ARIMA model. This model can be an \link[forecast]{Arima} or an \link[stats]{arima}. 
+#' @description  Performs the t test on every parameter of an ARIMA model. This model can be an \link[forecast]{Arima} or an \link[stats]{arima} object. 
 #' 
 #' @param model An \link[forecast]{Arima} or an \link[stats]{arima} object. The model for which the parameters must be tested.
 #' @param nx An \code{integer}. The number of exogenous variables

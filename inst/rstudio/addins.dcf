@@ -1,0 +1,4 @@
+Name: BETS search 
+Description: An interface `for` time series search
+Binding: BETS.addin
+Interactive: true

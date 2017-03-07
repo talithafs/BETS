@@ -23,11 +23,18 @@ BETS.addin <- function(){
                          "Description:", c("Search")
                ) 
              ),
+        column(1,
+          checkboxInput("lang1","EN",TRUE),
+          checkboxInput("lang2","PT",FALSE)
+        ),
        
          column(2,
                selectInput("periodicity",
                            "Periodicity:",
-                           c("All","M","A","Q","W","D")
+                           list(`Periodicity`=c("All","M","A","Q","W","D"),
+                                `Periodicidade`=c("All","M","A","D","T","S")
+                           )
+                          
                )       
         ),
         column(3,
@@ -48,28 +55,87 @@ BETS.addin <- function(){
   
   
   server <- function(input, output, session) {
-    remove(data)
-    data <- BETS.search("*",view=F)
+    
     # Filter data based on selections
-    output$table <- DT::renderDataTable(DT::datatable({
+   
+   
+     output$table <- DT::renderDataTable(DT::datatable({
+      data.addin <- BETS.search(description ="*",view=F)
+      
+      req(input$description) # tratamento para o input da descricao
+      req(input$source)      # tratamento para o input da fonte
+      
+      
+      if(input$lang1){
+      
+      
       if(input$description != "Search" || is.null(input$description)){
         
-          data <- BETS.search(description = input$description,view=F)
-        }
-        
+          data.addin <- BETS.search(description = input$description,view=F)
+          
+          if(input$periodicity!= "All"){
+            data.addin <- BETS.search(description = input$description,view=F)
+            data.addin <- data[data$periodicity == input$periodicity,]
+          }
+          
+          if(input$source!= "All"){
+            data.addin <- BETS.search(description = input$description,view=F)
+            data.addin <- data[data$source == input$source,]
+          }
+          
+          
+      }
+       data.addin = BETS.search("*",view=F)
+         
         if(input$periodicity!= "All"){
-          data <- BETS.search(description = input$description,view=F)
-          data <- data[data$periodicity == input$periodicity,]
+          data.addin <- BETS.search(description = input$description,view=F)
+          data.addin <- data[data$periodicity == input$periodicity,]
         }
        
         if(input$source!= "All"){
-          data = BETS.search(description = input$description,view=F,src=input$source)
+          data.addin <- BETS.search(description = input$description,view=F)
+          data.addin <- data[data$source == input$source,]
         }
               
-      data
-    },options = list(pageLength = 5, dom = 'tip')))
-    
-    
+      data.addin
+      
+      }else if(input$lang2){
+      
+        
+        if(input$description != "Search" || is.null(input$description)){
+          
+          data.addin <- BETS.search(description = input$description,view=F,lang="pt")
+          
+          if(input$periodicity!= "All"){
+            data.addin <- BETS.search(description = input$description,view=F,lang="pt")
+            data.addin <- data[data$periodicity == input$periodicity,]
+          }
+          
+          if(input$source!= "All"){
+            data.addin <- BETS.search(description = input$description,view=F,lang="pt")
+            data.addin <- data[data$source == input$source,]
+          }
+          
+          
+        }
+        data.addin = BETS.search("*",view=F,lang="pt")
+        
+        if(input$periodicity!= "All"){
+          data.addin <- BETS.search(description = input$description,view=F,lang="pt")
+          data.addin <- data[data$periodicity == input$periodicity,]
+        }
+        
+        if(input$source!= "All"){
+          data.addin <- BETS.search(description = input$description,view=F,lang="pt")
+          data.addin <- data[data$source == input$source,]
+        }
+        
+        data.addin
+        
+        
+          
+      }
+    },options = list(pageLength = 6, dom = 'tip')))
     
     
   }

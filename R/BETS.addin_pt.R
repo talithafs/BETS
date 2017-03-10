@@ -7,7 +7,7 @@
 #' @export
 
 
-BETS.addin_en <- function(){
+BETS.addin_pt <- function(){
   
   # Our ui will be a simple gadget page, which
   # simply displays the time in a 'UI' output.
@@ -19,22 +19,22 @@ BETS.addin_en <- function(){
       fluidRow(
         column(4,
                textInput("description", 
-                         "Description:", c("Search")
+                         "Descrição:", c("Pesquisa")
                ) 
              ),
         
        
          column(2,
                selectInput("periodicity",
-                           "Periodicity:",
-                           c("All","M","A","Q","W","D")
+                           "Periodicidade:",
+                           c("Todas","M","A","T","S","D")
                           
                )       
         ),
         column(3,
                textInput("source",
-                           "Source:",
-                           c("All")
+                           "Fonte:",
+                           c("Todas")
                )       
         )
       ),
@@ -60,46 +60,46 @@ BETS.addin_en <- function(){
       
         
         
-        nomes = c("Code","Description","Unit","Periodicity","Start","Last Value","Source")
+        nomes = c("Código","Descrição","Unidade","Periodicidade","Início","Último Valor","Fonte")
         
-        data.addin <- BETS.search(description ="*",view=F)
+        data.addin <- BETS.search(description ="*",view=F,lang="pt")
         names(data.addin) = nomes
         
         
         
-        if(input$description != "Search"){
+        if(input$description != "Pesquisa"){
           print(input$description)
           req(input$description) # tratamento para o input da descricao
-          data.addin <- BETS.search(description = input$description,view=F)
+          data.addin <- BETS.search(description = input$description,view=F,lang="pt")
           if(is.character(data.addin)){
-            data.addin = BETS.search(description="*",view=F)
+            data.addin = BETS.search(description="*",view=F,lang="pt")
             
           }else{
             data.addin 
           }
          
         }else{
-          data.addin <- BETS.search(description ="*",view=F)
+          data.addin <- BETS.search(description ="*",view=F,lang="pt")
         }
         
         
-        if(input$periodicity!= "All"){
+        if(input$periodicity!= "Todas"){
           req(input$periodicity)      # tratamento para o input da fonte
           #data.addin <- BETS.search(description = input$description,view=F)
           data.addin <- data.addin[data.addin$periodicity == input$periodicity,]
           if(is.character(data.addin)){
-            data.addin = BETS.search(description="*",view=F)
+            data.addin = BETS.search(description="*",view=F,lang="pt")
           }else{
             data.addin 
           }
         }
         
-        if(input$source!= "All"){
+        if(input$source!= "Todas"){
           req(input$source)      # tratamento para o input da fonte
           #data.addin <- BETS.search(description = input$description,view=F)
           data.addin <- data.addin[data.addin$source == input$source,]
           if(is.character(data.addin)){
-            data.addin = BETS.search(description="*",view=F)
+            data.addin = BETS.search(description="*",view=F,lang="pt")
           }else{
             data.addin 
           }
@@ -108,7 +108,7 @@ BETS.addin_en <- function(){
         print(data.addin)
         
         if(is.character(data.addin)){
-          data.addin = BETS.search(description="*",view=F)
+          data.addin = BETS.search(description="*",view=F,lang="pt")
         }else{
           data.addin 
         }

@@ -44,4 +44,3 @@ Create a chart with a pre-defined BETS series
 \author{
 Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

@@ -24,7 +24,7 @@ BETS.predict(..., actual = NULL, main = "", ylab = "", xlim = NULL,
 
 \item{legend.pos}{A \code{character}. The position of the legend. Possible values are standard R plot values, i.e., "topright', "bottomleft', etc.}
 
-\item{knit}{A \code{boolean}. Set this parameter to \code{TRUE} if}
+\item{knit}{A \code{boolean}. Set this parameter to \code{TRUE} to plot results.}
 }
 \value{
 Besides the prediction plot, this function returns an object whose fields are:
@@ -40,4 +40,3 @@ This function is built upon \link[forecast]{forecast}. Besides the model predict
 \author{
 Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

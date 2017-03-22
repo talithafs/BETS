@@ -4,8 +4,8 @@
 \alias{BETS.search}
 \title{Search for a Brazilian Economic Time Series}
 \usage{
-BETS.search(description, src, periodicity, unit, code, start, view = TRUE,
-  lang = "en")
+BETS.search(description = "*", src, periodicity, unit, code, start,
+  view = TRUE, lang = "en")
 }
 \arguments{
 \item{description}{A \code{character}. A search string to look for matching series descriptions. Check the syntax rules under the 'Details' section for better performance.}
@@ -45,7 +45,7 @@ Searches the BETS databases for a time series by its description, source, period
 \item{ Syntax rules for the parameter \code{description}, the search string to look for matching series descriptions: 
    \enumerate{
        \item{To search for alternative words, separate them by white spaces. 
-             Example: \code{description = "ipca core"} means that the series description must contain 'ipca' AND'core'
+             Example: \code{description = "ipca core"} means that the series description must contain 'ipca' AND 'core'
        }
        \item{To search for whole expressions, surround them with \code{' '}.
              Example: \code{description = "'core ipca' index"} means that the series description must contain 'core ipca' AND 'index'
@@ -54,7 +54,7 @@ Searches the BETS databases for a time series by its description, source, period
              Example: \code{description = "ipca ~ core"} means that the series description must contain 'ipca' AND must NOT contain 'core'
        }
        \item{To exclude whole expressions from the search, surround them with code{' '} and insert a \code{~} before each of them.
-             Example: \code{description = "~ 'ipca core' index"} means that the series description must contain 'index' AND must NOT contain 'core ipca'
+             Example: \code{description = "~ 'ipca core' index"} means that the series description must contain 'index' AND must NOT contain 'ipca core'
        }
        \item{It is possible to search for multiple words or expressions and to negate multiple words or expressions, as long as the preceeding rules are observed. 
        }
@@ -121,4 +121,3 @@ BETS.search(periodicity="A", view = FALSE)
 Central Bank of Brazil
 }
 \keyword{search}
-

@@ -17,7 +17,7 @@ BETS.t_test(model, nx = 0, alpha = 0.05)
 A \code{data.frame} containing the standard erros, the t-statistic, the critical values and whether the null hypothesis should be rejected or not, for each model parameter.
 }
 \description{
-Performs the t test on every parameter of an ARIMA model. This model can be an \link[forecast]{Arima} or an \link[stats]{arima}.
+Performs the t test on every parameter of an ARIMA model. This model can be an \link[forecast]{Arima} or an \link[stats]{arima} object.
 }
 \examples{
 require(forecast)
@@ -33,4 +33,3 @@ summary(fit.air)
 \author{
 Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

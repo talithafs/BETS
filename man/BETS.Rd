@@ -16,10 +16,7 @@ and the Brazilian Institute of Economics, from the Getulio Vargas Foundation
 of them free of charge. Besides providing access to this vast database, the
 package allows the user to interact with data in an easy and friendly way. 
 
-For instance, the user can search for a time series using keywords. More
-importantly, it installs several consecrated packages for time series 
-analysis, giving the user the option to perform a complete analysis without
-having to worry about installing and loading other packages. In a near 
+For instance, the user can search for a time series using keywords. In a near 
 future, the authors will publish a series of R exercises to be solved with 
 BETS and its statiscal/econometrical tools, therefore helping the user to 
 understand the behavior of brazilian time series.
@@ -33,4 +30,3 @@ Pedro Costa Ferreira \email{pedro.guilherme@fgv.br},
         Jonatha Costa \email{jonatha.costa@fgv.br}, 
         Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

@@ -10,7 +10,7 @@ BETS.dashboard(type = "inflation", country = "BR", parameters = NULL,
 \arguments{
 \item{type}{A \code{character}. The theme of the dashboard. The only option, for the time being, is 'inflation'.}
 
-\item{country}{A \code{character}. The country from which data must drawn. For now, BETS only accepts 'BR' (Brazil)}
+\item{country}{A \code{character}. The country from which data must be drawn. For now, BETS only accepts 'BR' (Brazil)}
 
 \item{parameters}{A \code{list}. A list of parameters. See the 'Details' section for a description of these parameters for each type of dashboard.}
 
@@ -36,4 +36,3 @@ Generate thematic dashboards using a selection of BETS time series and charts. F
 \author{
 Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

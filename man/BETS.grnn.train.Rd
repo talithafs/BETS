@@ -33,9 +33,8 @@ A \code{list} of result objects, each representing a network. These objects are 
 BETS.grnn.train also returns a diagnostic of training rounds and a \code{sigma} versus \code{accuracy} plot.
 }
 \description{
-Creates a set of probabilistic neural networks as proposed by \href{http://www.inf.ufrgs.br/~engel/data/media/file/cmp121/GRNN.pdf}{Specht [1991]}. The user provides a set of regressors and the function chooses which subset is the best, based on an accuracy measure (by default, the MAPE) between fited and actual values. These networks have only one parameter, the \code{sigma}, which is the standard deviation of each activation function (gaussian) of the pattern layer. Sigma can also be automatically chosen. This function builds on \link[grnn]{grnn-package}.
+Creates a set of probabilistic neural networks as proposed by \href{http://www.inf.ufrgs.br/~engel/data/media/file/cmp121/GRNN.pdf}{Specht [1991]}. The user provides a set of regressors and the function chooses which subset is the best, based on an accuracy measure (by default, the MAPE) between fitted and actual values. These networks have only one parameter, the \code{sigma}, which is the standard deviation of each activation function (gaussian) of the pattern layer. Sigma can also be automatically chosen. This function builds on \link[grnn]{grnn-package}.
 }
 \author{
 Talitha Speranza \email{talitha.speranza@fgv.br}
 }
-

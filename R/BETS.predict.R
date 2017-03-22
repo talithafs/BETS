@@ -10,7 +10,7 @@
 #' @param style A \code{character}. Can be either 'dygraphs' (the \link[dygraphs]{dygraph} function will be use to make the plot, which is going to be HTML based) or 'normal' (standard R functions will be used to make the plot)
 #' @param unnorm A \code{numeric vector}. If predictions must be unnormalized, set the first element of this vector to the mean and the second, to the standard deviation.
 #' @param legend.pos A \code{character}. The position of the legend. Possible values are standard R plot values, i.e., "topright', "bottomleft', etc.
-#' @param knit A \code{boolean}. Set this parameter to \code{TRUE} if 
+#' @param knit A \code{boolean}. Set this parameter to \code{TRUE} to plot results.
 #' 
 #' @return Besides the prediction plot, this function returns an object whose fields are:
 #' 

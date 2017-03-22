@@ -9,7 +9,7 @@ draw.vargdp(file, start = NULL, ylim = NULL, open = TRUE)
 \arguments{
 \item{file}{A \code{character}. The name of the file in which the plot must be printed. The extension can be either '.png' or '.pdf'. All charts are stored in the 'graphs' folder, under the BETS installation directory.}
 
-\item{start}{A \code{character}. The stating period of the series.}
+\item{start}{A \code{character}. The starting period of the series.}
 
 \item{ylim}{A \code{numeric vector}. Y axis limits.}
 
@@ -21,4 +21,3 @@ An image file is saved in the 'graphs' folder, under the BETS installation direc
 \description{
 Creates a plot of series 7326
 }
-

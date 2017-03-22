@@ -113,7 +113,7 @@
 #' @importFrom stringr str_split
 #' @export 
 
-BETS.search = function(description,src,periodicity,unit,code,start,view=TRUE,lang="en"){
+BETS.search = function(description="*",src,periodicity,unit,code,start,view=TRUE,lang="en"){
   
   
   

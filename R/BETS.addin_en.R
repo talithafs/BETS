@@ -3,10 +3,9 @@
 #' An interface for searching time series with possibility 
 #' to extract the data in different extensions.
 #' 
-#' @import DT
 #' @import miniUI
 #' @import rstudioapi
-#' 
+#' @import shiny
 #' 
 #' @export
 
@@ -22,7 +21,7 @@ BETS.addin_en  = function(){
       
       # Tab 1 - choose any colourweb.
       miniTabPanel(
-        "Pesquisa",
+        "Search",
         icon = icon("search"),
         miniContentPanel(
           
@@ -58,7 +57,7 @@ BETS.addin_en  = function(){
       
       # Tab 2 - choose an R colour similar to a colour you choose
       miniTabPanel(
-        "Visualização",
+        "Visualization",
         icon = icon("eye"),
         miniContentPanel(
           DT::dataTableOutput("table2")
@@ -66,7 +65,7 @@ BETS.addin_en  = function(){
       ),
       
       miniTabPanel(
-        "Exportar",
+        "Export",
         icon = icon("save"),
         miniContentPanel(
           fluidRow(

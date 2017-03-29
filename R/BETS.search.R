@@ -127,7 +127,7 @@ BETS.search = function(description="*",src,periodicity,unit,code,start,view=TRUE
     tb = "metadata_pt"
   }
   
-   if(description == "*"){
+   if(description == "*" && missing(src) && missing(periodicity) && missing(unit) && missing(code)){
       query <- paste0("select * from ", tb)
       results = dbGetQuery(conn, query)
       invisible(dbDisconnect(conn))
